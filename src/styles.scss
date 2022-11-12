@@ -1,0 +1,31 @@
+@use '@angular/material' as mat;
+@include mat.core();
+
+$contab-primary-palette: (
+    50: #ffffff,
+    100: #dda1a1,
+    400: #3f51b5,
+    500: #1f3042,
+    600: #4B8ACC,
+    700: #5d5f61,
+    contrast: (
+        500: rgba(#ffffff, 0.87),
+    )
+);
+
+
+$my-app-primary: mat.define-palette($contab-primary-palette, 500);
+$my-app-accent:  mat.define-palette($contab-primary-palette, 600);
+$my-app-warn:    mat.define-palette(mat.$red-palette);
+
+$my-app-theme: mat.define-light-theme($my-app-primary, $my-app-accent, $my-app-warn);
+
+@include mat.all-component-themes($my-app-theme);
+
+$contab-app-primary:#1f3042;
+
+.precondition-message {
+  background-color: var(--deleted-row);
+  padding: 15px;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}

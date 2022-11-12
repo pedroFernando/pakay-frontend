@@ -1,0 +1,67 @@
+<mat-toolbar *ngIf="!showOutlet">Socios</mat-toolbar>
+
+<router-outlet (activate)="showOutlet = true" (deactivate)="showOutlet = false"></router-outlet>
+
+<div *ngIf="!showOutlet" class="example-container mat-elevation-z8">
+  <div class="example-header">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar Socio">
+    </mat-form-field>
+  </div> 
+
+  <mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+    <ng-container matColumnDef="cedula">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Cédula </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.cedula}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="nombres">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Nombres </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.nombres}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="apellidos">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Apellidos </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.apellidos}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="direccion">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Dirección </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.direccion}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="telefono">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Teléfono </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.telefono}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="acciones">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef=" let row">
+        <button mat-icon-button color="primary" (click)="editar(row.id)"
+        matTooltip="Editar" matTooltipPosition="above">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="accent" (click)="eliminar(row)"
+        matTooltip="Eliminar" matTooltipPosition="above">
+          <mat-icon>delete</mat-icon>
+        </button>
+        <button mat-icon-button color="primary" (click)="showAuditoria(row)"
+        matTooltip="Historial" matTooltipPosition="above">
+          <mat-icon>history</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+  </mat-table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>
+<br/>
+<button *ngIf="!showOutlet" mat-fab color="accent" style="float: right" (click)="nuevo()"
+  matTooltip="Nuevo" matTooltipPosition="above">
+  <mat-icon>create</mat-icon>
+</button>

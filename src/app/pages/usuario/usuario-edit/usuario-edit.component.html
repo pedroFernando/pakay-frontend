@@ -1,0 +1,81 @@
+<mat-card>Ingrese los datos del Usuario</mat-card>
+
+<br/>
+
+<form class="form" [formGroup]="form" (ngSubmit)="operar()" #loginForm="ngForm">
+
+  <div [hidden]="true">
+    <mat-form-field class="full-width-form">
+      <input matInput placeholder="ID" required formControlName="id">
+    </mat-form-field>
+  </div>
+
+  <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+
+    <div fxFlex="30%">
+      <mat-form-field class="full-width-form">
+        <input matInput placeholder="Nombre" required formControlName="nombre">
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="30%">
+      <mat-form-field class="full-width-form">
+        <input matInput placeholder="Apellido" required formControlName="apellido">
+      </mat-form-field>
+    </div>
+
+  </div>
+
+  <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+
+    <div fxFlex="30%">
+      <mat-form-field class="full-width-form">
+        <input matInput placeholder="Identificación" required formControlName="identificacion">
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="30%">
+      <mat-form-field class="full-width-form">
+        <input matInput placeholder="Usuario" required formControlName="usuario" maxlength="25">
+      </mat-form-field>
+    </div>
+
+  </div>
+
+  <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+
+    <div fxFlex="30%">
+      <mat-form-field class="full-width-form">
+        <input matInput placeholder="Email" required formControlName="email">
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="30%">
+      <mat-form-field class="full-width-form">
+        <mat-select [compareWith]="compareFn" placeholder="Estado" formControlName="estado" required>
+          <mat-option *ngFor="let ti of estados" [value]="ti.cod">
+            {{ ti.nombre }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+
+    <div fxFlex="60%">
+      <button mat-raised-button class="button-form" color="primary" type="submit" [disabled]="loginForm.invalid">
+        <mat-icon>done</mat-icon>
+        <span>Aceptar</span>
+      </button>
+
+      <button mat-raised-button class="button-form" color="accent" routerLink='/usuario' type="button">
+        <mat-icon>close</mat-icon>
+        <span>Cancelar</span>
+      </button>
+    </div>
+  </div>
+
+</form>
+
+<br/>

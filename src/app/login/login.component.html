@@ -1,0 +1,61 @@
+<div class="login" fxLayout="row" fxLayout.lt-md="column">
+  <div class="left">
+    <div class="left__content">
+
+      <div class="left__header">
+        <h2 class="title">Iniciar Sesión</h2>
+        <p class="link">¿No tienes cuenta? <a routerLink="/registro">Regístrate</a></p>
+      </div>
+
+      <form [formGroup]="formLogin" (ngSubmit)="iniciarSesion()" autocomplete="off" class="left__form">
+        <div class="left__form-container" fxLayout="row" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+          <div fxFlex="45%">
+            <mat-form-field class="full-width-form">
+              <input matInput placeholder="Usuario" required formControlName="usuario" class="left__form-input">
+              <mat-label>
+                <mat-icon>account_circle</mat-icon> <b> Usuario</b>
+              </mat-label>
+            </mat-form-field>
+          </div>
+
+        </div>
+
+        <div class="left__form-container" fxLayout="row" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+
+          <div fxFlex="45%">
+            <mat-form-field class="full-width-form">
+              <input
+                matInput
+                [type]="hide ? 'password' : 'text'"
+                required
+                placeholder="Contraseña"
+                class="left__form-input left__form-password"
+                formControlName="contrasena"
+                autocomplete="on">
+              <mat-label>
+                <mat-icon>vpn_key</mat-icon> <b> Contraseña</b>
+              </mat-label>
+              <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+            </mat-form-field>
+          </div>
+
+        </div>
+
+        <div class="left__form-container" fxLayout="row" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+          <button mat-raised-button class="left__form-button" color="primary" type="submit">
+            <mat-icon>input</mat-icon>
+            Iniciar Sesión
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="right">
+    <div class="right__content">
+      <img src="/assets/isoftech.png" width="80px">
+      <h2 class="right-header">PAKAY - Sistema de Caja de Ahorro</h2>
+      <p>El ahorro es inversión</p>
+    </div>
+  </div>
+</div>

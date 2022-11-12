@@ -1,0 +1,69 @@
+<div class="example-container mat-elevation-z8">
+
+  <mat-card>
+    <mat-card-header>
+      <div mat-card-avatar>
+        <mat-icon>history</mat-icon>
+      </div>
+      <mat-card-title>Historial de modificaciones</mat-card-title>
+      <mat-card-subtitle>{{entidad}}: {{objeto}}</mat-card-subtitle>
+    </mat-card-header>
+  </mat-card>
+
+  <mat-table [dataSource]="dataSource">
+
+    <ng-container matColumnDef="fecha">
+      <mat-header-cell *matHeaderCellDef> Fecha </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <span class="mobile-label">Fecha:</span>
+        {{row.fecha | date: 'dd/MM/yyyy HH:mm'}}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="accion">
+      <mat-header-cell *matHeaderCellDef> Acción </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <span class="mobile-label">Acción:</span>
+        {{row.accion == 'C' ? 'Creado' : row.accion == 'U' ? 'Actualizado' : 'Eliminado'}}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="registro">
+      <mat-header-cell *matHeaderCellDef> Registro </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <span class="mobile-label">Registro:</span>
+        {{row.registro}}
+      </mat-cell>
+      <mat-footer-cell *matFooterCellDef> </mat-footer-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="ip">
+      <mat-header-cell *matHeaderCellDef> Ip </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <span class="mobile-label">Ip:</span>
+        {{row.ip}}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="aplicacion">
+      <mat-header-cell *matHeaderCellDef> Origen </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <span class="mobile-label">Origen:</span>
+        {{row.aplicacion.nombre}}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="usuario">
+      <mat-header-cell *matHeaderCellDef> Usuario </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <span class="mobile-label">Usuario:</span>
+        {{row.usuario.usuario}}
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+  </mat-table>
+  <mat-paginator [pageSizeOptions]="[7, 25, 100]"></mat-paginator>
+</div>

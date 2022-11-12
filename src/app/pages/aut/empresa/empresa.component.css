@@ -1,0 +1,13 @@
+   .form {
+    min-width: 150px;
+    width: 98%;
+    margin: 20px 5px;
+  }
+  
+  .button-form {
+    margin: 10px 0;
+  }
+
+  .full-width-form {
+    width: 100%;
+  }

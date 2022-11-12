@@ -1,0 +1,64 @@
+<mat-toolbar *ngIf="!showOutlet">Cajas</mat-toolbar>
+
+<router-outlet (activate)="showOutlet = true" (deactivate)="showOutlet = false"></router-outlet>
+
+<div *ngIf="!showOutlet" class="example-container mat-elevation-z8">
+  <div class="example-header">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar Caja">
+    </mat-form-field>
+  </div> 
+
+  <mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+    <ng-container matColumnDef="nombre">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.nombre}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="monto">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Monto </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.monto}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="acciones">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef=" let row">
+        <button mat-icon-button color="primary" (click)="editar(row.id)"
+        matTooltip="Editar" matTooltipPosition="above">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="primary" (click)="transferir(row.id)"
+        matTooltip="Transferir" matTooltipPosition="above">
+          <mat-icon>compare_arrows</mat-icon>
+        </button>
+        <button mat-icon-button color="primary" (click)="ingreso(row.id)"
+        matTooltip="Ingreso" matTooltipPosition="above">
+          <mat-icon>trending_up</mat-icon>
+        </button>
+        <button mat-icon-button color="primary" (click)="egreso(row.id)"
+        matTooltip="Egreso" matTooltipPosition="above">
+          <mat-icon>trending_down</mat-icon>
+        </button>
+        <button mat-icon-button color="accent" (click)="eliminar(row)"
+        matTooltip="Eliminar" matTooltipPosition="above">
+          <mat-icon>delete</mat-icon>
+        </button>
+        <button mat-icon-button color="primary" (click)="showAuditoria(row)"
+        matTooltip="Historial" matTooltipPosition="above">
+          <mat-icon>history</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+  </mat-table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>
+<br/>
+<button *ngIf="!showOutlet" mat-fab color="accent" style="float: right" (click)="nuevo()"
+  matTooltip="Nuevo" matTooltipPosition="above">
+  <mat-icon>create</mat-icon>
+</button>

@@ -1,0 +1,71 @@
+  
+  .mat-table{
+    overflow: auto;
+    max-height: 400px;
+  }
+
+  .mat-footer-row {
+    font-weight: bold;
+    font-size: 0.7em;
+  }
+
+  .mobile-label {
+    display: none;
+  }
+
+@media(max-width: 600px) {
+    .mobile-label {
+      width: 60px;
+      display: inline-block;
+      font-weight: bold;
+    }
+  
+    .mat-header-row,
+    .mat-footer-row {
+      display: none;
+    }
+  
+    .mat-row { 
+      flex-direction: column;
+      align-items: start;
+      padding: 8px 10px;
+      min-height: 0px;
+    }
+
+    .mat-column-fecha,
+    .mat-column-estado,
+    .mat-column-capital,
+    .mat-column-interes,
+    .mat-column-cuota,
+    .mat-column-saldo,
+    .mat-column-acciones {
+        max-width: 100% !important;
+        min-height: 0px;
+    }
+    mat-cell:first-child{
+        padding-left: 0px;
+    }
+  }
+  
+  /* Column Widths */
+  .mat-column-fecha{
+    min-width: 90px;
+  }
+
+  .mat-column-estado{
+    min-width: 120px;
+  }
+
+  .mat-column-capital,
+  .mat-column-interes,
+  .mat-column-cuota,
+  .mat-column-saldo {
+    max-width: 100px;
+    min-width: 80px;
+    display: flex;
+    justify-content: flex-end;
+}
+ 
+  mat-cell{
+    font-size: 0.7em;
+  }

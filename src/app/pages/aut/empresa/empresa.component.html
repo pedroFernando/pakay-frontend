@@ -1,0 +1,64 @@
+<mat-card>Datos de Empresa</mat-card>
+
+<form class="form" [formGroup]="form" (ngSubmit)="operar()" #loginForm="ngForm">
+
+  <div [hidden]="true">
+    <mat-form-field class="full-width-form">
+      <input matInput placeholder="ID" required formControlName="id">
+    </mat-form-field>
+  </div>
+
+  <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+
+    <div fxFlex="30%">
+      <mat-form-field class="full-width-form">
+        <input matInput placeholder="RUC" required formControlName="ruc">
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="30%">
+      <mat-form-field class="full-width-form">
+        <input matInput placeholder="Razón Social" required formControlName="razonSocial">
+      </mat-form-field>
+    </div>
+
+  </div>
+
+  <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+
+    <div fxFlex="30%">
+      <mat-form-field class="full-width-form">
+        <input matInput placeholder="Nombre Comercial " required formControlName="nombreComercial">
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="30%">
+      <mat-form-field class="full-width-form">
+        <input matInput placeholder="Dirección" required formControlName="dirMatriz">
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+    <div fxFlex="30%">
+      <mat-form-field class="full-width-form">
+        <input matInput placeholder="Contribuyente Especial" formControlName="contribuyenteEspecial" type="number" maxlength="9">
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="30%">
+      <mat-checkbox formControlName="obligadoContabilidad">Obligado contabilidad</mat-checkbox>
+    </div>
+  </div>
+
+  <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+    <div fxFlex="60%">
+      <button class="button-form" mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid">
+        <mat-icon>done</mat-icon>
+        <span>Actualizar</span>
+      </button>
+    </div>
+  </div>
+</form>
+
+<br/>

@@ -1,0 +1,66 @@
+<mat-card>Perfil de Usuario</mat-card>
+
+<br/>
+
+<form class="form" [formGroup]="form" (ngSubmit)="operar()" #loginForm="ngForm">
+
+  <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+
+    <div fxFlex="30%">
+      <mat-form-field class="full-width-form">
+        <input matInput placeholder="Usuario" formControlName="usuario" readonly>
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="30%">
+      <mat-form-field class="full-width-form">
+        <input matInput placeholder="Identificación" required formControlName="identificacion">
+      </mat-form-field>
+    </div>
+
+  </div>
+
+  <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+
+    <div fxFlex="30%">
+      <mat-form-field class="full-width-form">
+        <input matInput placeholder="Nombre" required formControlName="nombre">
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="30%">
+      <mat-form-field class="full-width-form">
+        <input matInput placeholder="Apellido" required formControlName="apellido">
+      </mat-form-field>
+    </div>
+
+  </div>
+
+  <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+
+    <div fxFlex="30%">
+      <mat-form-field class="full-width-form">
+        <input matInput placeholder="Email" required formControlName="email">
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="30%">
+      <mat-form-field class="full-width-form">
+        <input matInput placeholder="Estado" value="{{estado}}" readonly>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+
+    <div fxFlex="60%">
+      <button mat-raised-button class="button-form" color="primary" type="submit" [disabled]="loginForm.invalid">
+        <mat-icon>save</mat-icon>
+        <span>Guardar</span>
+      </button>
+    </div>
+  </div>
+
+</form>
+
+<br/>

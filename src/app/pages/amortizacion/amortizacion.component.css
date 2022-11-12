@@ -1,0 +1,56 @@
+.example-container{
+    display: flex;
+    flex-direction: column;
+    min-width: 300px;
+    max-height: 500px;
+}
+
+.mat-table {
+    overflow: auto;
+    max-height: 500px;
+}
+
+.mat-footer-row {
+  font-weight: bold;
+}
+  
+.mobile-label {
+    display: none;
+}
+
+@media(max-width: 600px) {
+    .mobile-label {
+      width: 80px;
+      display: inline-block;
+      font-weight: bold;
+    }
+  
+    .mat-header-row {
+      display: none;
+    }
+  
+    .mat-row { 
+      flex-direction: column;
+      align-items: start;
+      padding: 8px 10px;
+      min-height: 0px;
+    }
+
+    .mat-column-capital
+    .mat-column-fecha,
+    .mat-column-cuota,
+    .mat-column-numero,
+    .mat-column-interes,
+    .mat-column-saldo {
+        max-width: 100% !important;
+        min-height: 0px;
+    }
+    mat-cell:first-child{
+        padding-left: 0px;
+    }
+  }
+
+.mat-form-field{
+    font-size: 14px;
+    width: 100%;
+}

@@ -1,0 +1,63 @@
+<mat-toolbar *ngIf="!showOutlet">Balance</mat-toolbar>
+
+<router-outlet (activate)="showOutlet = true" (deactivate)="showOutlet = false"></router-outlet>
+<div *ngIf="!showOutlet">
+  <form class="form" [formGroup]="formConsulta" (ngSubmit)="consultar()" #consultaForm="ngForm" autocomplete="off">
+
+    <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+      <div fxFlex="40%">
+        <mat-form-field class="full-width-form">
+          <input type="text" placeholder="Socio" matInput [matAutocomplete]="autoSocio" formControlName="socio">
+          <mat-autocomplete #autoSocio="matAutocomplete" [displayWith]="displayFnSocio" (optionSelected)="seleccionarSocio($event)">
+            <mat-option *ngFor="let p of filteredSocio | async" [value]="p">
+              {{ p.cedula + " - " + p.nombres + " " + p.apellidos }}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </div>
+      <div fxFlex="20%">
+        <button mat-raised-button class="button-form" color="primary" type="submit">
+          <mat-icon>search</mat-icon>
+          <span>Buscar</span>
+        </button>
+      </div>
+    </div>
+
+  </form>
+</div>
+
+<div *ngIf="!showOutlet" class="example-container mat-elevation-z8">
+
+  <mat-table [dataSource]="dataSource" matSort [class.isMobile]="isMobile">
+
+    <ng-container matColumnDef="descripcion">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Descripción </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <span class="mobile-label">Descripción:</span>
+        {{row.nombre}}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="cantidad">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Cantidad </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <span class="mobile-label">Cantidad:</span>
+        {{row.cantidad}}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="valor">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Valor </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <span class="mobile-label">Valor:</span>
+        {{row.valor | currency}}
+      </mat-cell>
+    </ng-container>
+    
+    <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+  </mat-table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>
+<br/>

@@ -1,0 +1,126 @@
+<mat-toolbar *ngIf="!showOutlet">Amortizaciones</mat-toolbar>
+
+<router-outlet (activate)="showOutlet = true" (deactivate)="showOutlet = false"></router-outlet>
+<div *ngIf="!showOutlet">
+  <form class="form" [formGroup]="formConsulta" (ngSubmit)="consultar()" #consultaForm="ngForm" autocomplete="off">
+    <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+      <div fxFlex="20%">
+        <mat-form-field class="full-width-form">
+          <mat-select [compareWith]="compareClases" placeholder="Clase" formControlName="clase" (selectionChange)="changeClase($event)">
+            <mat-option>-- Ninguno --</mat-option>
+            <mat-option *ngFor="let cl of clases" [value]="cl">
+              {{ cl }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div fxFlex="20%">
+        <mat-form-field class="full-width-form">
+          <mat-select [compareWith]="compareTipos" placeholder="Tipo" formControlName="tipo" (selectionChange)="changeTipo($event)">
+            <mat-option>-- Ninguno --</mat-option>
+            <mat-option *ngFor="let ti of tipos" [value]="ti">
+              {{ ti }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div fxFlex="20%">
+        <mat-form-field class="full-width-form">
+          <input matInput placeholder="Plazo" maxlength="2" formControlName="plazo">
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+      <div fxFlex="15%">
+        <mat-form-field class="full-width-form">
+          <input matInput placeholder="Monto" maxlength="10" formControlName="monto">
+        </mat-form-field>
+      </div>
+      <div fxFlex="15%">
+        <mat-form-field class="full-width-form">
+          <input matInput placeholder="Interés" maxlength="4" formControlName="interes">
+        </mat-form-field>
+      </div>
+      <div fxFlex="15%">
+        <mat-form-field class="full-width-form">
+          <input matInput [matDatepicker]="picker3" placeholder="Fecha" formControlName="fecha">
+          <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+          <mat-datepicker #picker3></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div fxFlex="15%">
+        <button mat-raised-button class="button-form" color="primary" type="submit">
+          <mat-icon>search</mat-icon>
+          <span>Generar</span>
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div *ngIf="!showOutlet" class="example-container mat-elevation-z8">
+
+  <mat-table [dataSource]="dataSource" matSort [class.isMobile]="isMobile">
+
+    <ng-container matColumnDef="numero">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Número </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <span class="mobile-label">Número:</span>
+        {{row.numero}}
+      </mat-cell>
+      <mat-footer-cell *matFooterCellDef><button mat-raised-button disabled="{{activar}}" color="primary" (click)="exportAsExcelFile()">Exportar a excel</button></mat-footer-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="fecha">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Fecha </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <span class="mobile-label">Fecha:</span>
+        {{row.fecha | date: 'dd/MM/yyyy'}}
+      </mat-cell>
+      <mat-footer-cell *matFooterCellDef> Total: </mat-footer-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="capital">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Capital </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <span class="mobile-label">Capital:</span>
+        {{row.capital | currency}}
+      </mat-cell>
+      <mat-footer-cell *matFooterCellDef> {{totalCapital | currency}} </mat-footer-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="interes">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Interes </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <span class="mobile-label">Interes:</span>
+        {{row.interes | currency}}
+      </mat-cell>
+      <mat-footer-cell *matFooterCellDef> {{totalInteres | currency}} </mat-footer-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="cuota">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Cuota </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <span class="mobile-label">Cuota:</span>
+        {{row.cuota | currency}}
+      </mat-cell>
+      <mat-footer-cell *matFooterCellDef> {{totalCuota | currency}} </mat-footer-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="saldo">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Saldo </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <span class="mobile-label">Saldo:</span>
+        {{row.saldo | currency}}
+      </mat-cell>
+      <mat-footer-cell *matFooterCellDef> {{0.00 | currency}} </mat-footer-cell>
+    </ng-container>
+    
+    <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    <mat-footer-row *matFooterRowDef="displayedColumns; sticky: true"></mat-footer-row>
+
+  </mat-table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>
+<br/>

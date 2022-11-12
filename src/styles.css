@@ -1,0 +1,40 @@
+/* You can add global styles to this file, and also import other style files */
+@import "@angular/material/prebuilt-themes/indigo-pink.css";
+
+/*Formularios*/
+.form {
+    min-width: 150px;
+    width: 98%;
+    margin: 20px 5px;
+  }
+
+  .button-form {
+    margin: 10px 10px 0 0 !important;
+  }
+
+  .full-width-form {
+    width: 100%;
+  }
+  /*Fin Formularios*/
+
+.resaltadoRow{
+    background: #bbd7ee;
+}
+
+.row-deleted {
+  background-color: var(--deleted-row);
+  opacity: 0.5;
+}
+
+.snackbar-error {
+  background-color: #f23a2f;
+  color: white;
+}
+
+.snackbar-error button {
+  color: white;
+}
+
+body {
+  margin: 0px;
+}

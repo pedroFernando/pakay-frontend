@@ -1,0 +1,36 @@
+<mat-toolbar>Transferencia de {{ caja.nombre }}</mat-toolbar>
+
+<br/>
+<div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+
+  <div fxFlex="30%">
+    <mat-form-field class="full-width-form">
+      <mat-select [compareWith]="compareCajas" placeholder="Caja" required [formControl]="formCaja" (selectionChange)="changeCaja($event)">
+        <mat-option *ngFor="let ti of cajas" [value]="ti">
+          {{ ti.nombre + "-" + ti.monto }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div fxFlex="30%">
+    <mat-form-field class="full-width-form">
+      <input matInput placeholder="Monto" required [(ngModel)]="monto" type="number">
+    </mat-form-field>
+  </div>
+</div>
+
+<div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+
+  <div fxFlex="60%">
+    <button mat-raised-button class="button-form" color="primary" type="button" (click)="transferir()">
+      <mat-icon>save</mat-icon>
+      <span>Guardar</span>
+    </button>
+
+    <button mat-raised-button class="button-form" color="accent" routerLink='/caja' type="button">
+      <mat-icon>close</mat-icon>
+      <span>Cancelar</span>
+    </button>
+  </div>
+</div>
+<br/>

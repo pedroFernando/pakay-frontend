@@ -1,0 +1,148 @@
+<mat-horizontal-stepper [linear]="isLinear" #stepper>
+  <mat-step [stepControl]="formEmpresa">
+    <form [formGroup]="formEmpresa" #formEmp="ngForm">
+      <ng-template matStepLabel>Información de Empresa</ng-template>
+
+
+      <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+
+        <div fxFlex="30%">
+          <mat-form-field class="full-width-form">
+            <input matInput placeholder="RUC" required formControlName="ruc">
+          </mat-form-field>
+        </div>
+
+        <div fxFlex="30%">
+          <mat-form-field class="full-width-form">
+            <input matInput placeholder="Razón Social" required formControlName="razonSocial">
+          </mat-form-field>
+        </div>
+
+      </div>
+
+      <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+
+        <div fxFlex="30%">
+          <mat-form-field class="full-width-form">
+            <input matInput placeholder="Nombre Comercial " required formControlName="nombreComercial">
+          </mat-form-field>
+        </div>
+
+        <div fxFlex="30%">
+          <mat-form-field class="full-width-form">
+            <input matInput placeholder="Dirección" required formControlName="dirMatriz">
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+        <div fxFlex="30%">
+          <mat-form-field class="full-width-form">
+            <input matInput placeholder="Contribuyente Especial" formControlName="contribuyenteEspecial" type="number" maxlength="9">
+          </mat-form-field>
+        </div>
+
+        <div fxFlex="30%">
+          <mat-checkbox formControlName="obligadoContabilidad">Obligado contabilidad</mat-checkbox>
+        </div>
+      </div>
+
+
+      <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+        <div fxFlex="60%">
+          <button mat-raised-button matStepperNext color="primary" class="button-form" [disabled]="formEmp.invalid">Siguiente</button>
+        </div>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="formUsuario">
+    <form [formGroup]="formUsuario" #formUser="ngForm" (ngSubmit)="operar()">
+      <ng-template matStepLabel>Información de Usuario</ng-template>
+
+      <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+
+        <div fxFlex="30%">
+          <mat-form-field class="full-width-form">
+            <input matInput placeholder="Nombre" required formControlName="nombre">
+          </mat-form-field>
+        </div>
+
+        <div fxFlex="30%">
+          <mat-form-field class="full-width-form">
+            <input matInput placeholder="Apellido" required formControlName="apellido">
+          </mat-form-field>
+        </div>
+
+      </div>
+
+      <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+
+        <div fxFlex="30%">
+          <mat-form-field class="full-width-form">
+            <input matInput placeholder="Identificación" required formControlName="identificacion">
+          </mat-form-field>
+        </div>
+
+        <div fxFlex="30%">
+          <mat-form-field class="full-width-form">
+            <input matInput placeholder="Usuario" required formControlName="usuario" maxlength="25">
+          </mat-form-field>
+        </div>
+
+      </div>
+
+      <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+
+        <div fxFlex="30%">
+          <mat-form-field class="full-width-form">
+            <input matInput placeholder="Email" required formControlName="email">
+          </mat-form-field>
+        </div>
+        <div fxFlex="30%">
+        </div>
+
+      </div>
+
+      <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+
+        <div fxFlex="30%">
+          <mat-form-field class="full-width-form">
+            <input #pass matInput type="password" placeholder="Contraseña" required formControlName="password"
+            minlength="8" maxlength="50">
+          </mat-form-field>
+        </div>
+
+        <div fxFlex="45%">
+          <password-strength-meter [password]="password.value" [enableFeedback]="true"></password-strength-meter>
+          <small>
+            Su contraseña debe tener entre 8 y 20 caracteres, contener letras y números, y no debe contener
+            espacios, caracteres especiales o emoji.
+          </small>
+        </div>
+      </div>
+
+      <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+
+        <div fxFlex="30%">
+          <mat-form-field class="full-width-form">
+            <input matInput type="password" placeholder="Confirmación Contraseña" required formControlName="confirmPassword">
+          </mat-form-field>
+        </div>
+        <div fxFlex="30%">
+        </div>
+
+      </div>
+
+
+      <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+
+        <div fxFlex="60%">
+          <button mat-raised-button matStepperPrevious color="accent" class="button-form">Atras</button>
+
+          <button mat-raised-button type="submit" color="primary" [disabled]="formUser.invalid" class="button-form">Enviar</button>
+        </div>
+
+      </div>
+    </form>
+  </mat-step>
+</mat-horizontal-stepper>

@@ -1,0 +1,104 @@
+<div class="example-container mat-elevation-z8">
+  <mat-card>
+    <mat-card-header>
+      <div mat-card-avatar>
+        <mat-icon>timeline</mat-icon>
+      </div>
+      <mat-card-title>Amortizaciones</mat-card-title>
+      <mat-card-subtitle>{{ documento }}</mat-card-subtitle>
+      <mat-card-subtitle>{{ cliente }}</mat-card-subtitle>
+    </mat-card-header>
+  </mat-card>
+  <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+    <div fxFlex="30%">
+      <mat-form-field class="full-width-form">
+        <mat-select [compareWith]="compareCajas" placeholder="Caja" required [formControl]="formCaja" (selectionChange)="changeCaja($event)">
+          <mat-option *ngFor="let ti of cajas" [value]="ti">
+            {{ ti.nombre + "-" + ti.monto }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div fxFlex="20%">
+      <mat-form-field class="full-width-form">
+        <input matInput [matDatepicker]="picker3" placeholder="Fecha" [(ngModel)]="fecha">
+        <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+        <mat-datepicker #picker3></mat-datepicker>
+      </mat-form-field>
+    </div>
+  </div>
+  <mat-table [dataSource]="dataSource">
+
+    <ng-container matColumnDef="fecha">
+      <mat-header-cell *matHeaderCellDef> Fecha </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <span class="mobile-label">Fecha:</span>
+        {{row.fecha | date: 'dd/MM/yyyy'}} </mat-cell>
+      <mat-footer-cell *matFooterCellDef> </mat-footer-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="estado">
+      <mat-header-cell *matHeaderCellDef> Estado </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <span class="mobile-label">Estado:</span>
+        {{row.estado == 'D'?'DEUDA':'PAGADA'}} </mat-cell>
+      <mat-footer-cell *matFooterCellDef> </mat-footer-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="capital">
+      <mat-header-cell *matHeaderCellDef> Capital </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <span class="mobile-label">Capital:</span>
+        {{row.capital | currency}} </mat-cell>
+      <mat-footer-cell *matFooterCellDef> {{dto.totalCapital | currency}} </mat-footer-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="interes">
+      <mat-header-cell *matHeaderCellDef> Interes </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <span class="mobile-label">Interes:</span>
+        {{row.interes | currency}} </mat-cell>
+      <mat-footer-cell *matFooterCellDef> {{dto.totalInteres | currency}} </mat-footer-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="cuota">
+      <mat-header-cell *matHeaderCellDef> Cuota </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <span class="mobile-label">Cuota:</span>
+        {{row.cuota | currency}} </mat-cell>
+      <mat-footer-cell *matFooterCellDef> {{dto.totalCuota | currency}} </mat-footer-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="saldo">
+      <mat-header-cell *matHeaderCellDef> Saldo </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <span class="mobile-label">Saldo:</span>
+        {{row.saldo | currency}} </mat-cell>
+      <mat-footer-cell *matFooterCellDef> {{dto.totalSaldo | currency}} </mat-footer-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="acciones">
+      <mat-header-cell *matHeaderCellDef>
+        <mat-form-field>
+          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtrar Amortización">
+        </mat-form-field>
+      </mat-header-cell>
+      <mat-cell *matCellDef=" let row">
+        <span class="mobile-label"></span>
+        <button mat-icon-button color="primary" (click)="pagar(row)" [disabled]="row.estado == 'P'" matTooltip="Pagar" matTooltipPosition="above">
+          <mat-icon>attach_money</mat-icon>
+        </button>
+        <button mat-icon-button color="primary" (click)="showAuditoria(row)" matTooltip="Historial" matTooltipPosition="above">
+          <mat-icon>history</mat-icon>
+        </button>
+      </mat-cell>
+      <mat-footer-cell *matFooterCellDef> </mat-footer-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    <mat-footer-row *matFooterRowDef="displayedColumns; sticky: true"></mat-footer-row>
+
+  </mat-table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 50]"></mat-paginator>
+</div>

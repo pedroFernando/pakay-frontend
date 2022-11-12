@@ -1,0 +1,84 @@
+<div class="main">
+
+  <div class="example-container-main" [class.example-is-mobile]="mobileQuery.matches">
+    <mat-progress-bar color="primary" [mode]="'indeterminate'" class="loading-bar"
+      *ngIf="loadingService.visibility | async">
+    </mat-progress-bar>
+    <mat-toolbar color="primary" class="example-toolbar">
+      <button mat-icon-button (click)="sidenav.toggle()" *ngIf="loginService.esLogeado">
+        <mat-icon *ngIf="!sidenav.opened">menu</mat-icon>
+        <mat-icon *ngIf="sidenav.opened">chevron_left</mat-icon>
+      </button>
+      <h1 class="example-app-name">PAKAY - Sistema de Caja de Ahorro</h1>
+      <span class="example-spacer"></span>
+
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item routerLink="/perfil" *ngIf="loginService.esLogeado">
+          <mat-icon>account_circle</mat-icon>
+          <span>Mi Perfil</span>
+        </button>
+        <button mat-menu-item (click)="loginService.cerrarSesion(); (sidenav.opened ? sidenav.toggle() : '')"
+          *ngIf="loginService.esLogeado">
+          <mat-icon>exit_to_app</mat-icon>
+          <span>Cerrar Sesión</span>
+        </button>
+
+      </mat-menu>
+    </mat-toolbar>
+    <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+
+      <mat-sidenav #sidenav [opened]="true" [mode]="mobileQuery.matches ? 'over' : 'side'"
+        [fixedInViewport]="mobileQuery.matches" fixedTopGap="56" [style.width.px]="mobileQuery.matches ? 200 : 220"
+        role="navigation">
+
+        <mat-card>
+          <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>Bienvenido</mat-card-title>
+            <mat-card-subtitle>{{loginService.nombreEmpresa}}</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            {{loginService.nombreUsuario}}
+          </mat-card-content>
+        </mat-card>
+        <button mat-menu-item (click)="amortizacion(); (mobileQuery.matches ? sidenav.toggle() : '')" style="cursor: pointer">
+          <mat-icon>insert_drive_file</mat-icon>
+          <span>Amortización</span>
+        </button>
+        <mat-divider></mat-divider>
+        <button mat-menu-item (click)="caja(); (mobileQuery.matches ? sidenav.toggle() : '')" style="cursor: pointer">
+            <mat-icon>assignment</mat-icon>
+            <span>Caja</span>
+        </button>
+        <button mat-menu-item (click)="aporte(); (mobileQuery.matches ? sidenav.toggle() : '')" style="cursor: pointer">
+            <mat-icon>assignment</mat-icon>
+            <span>Aportes</span>
+        </button>
+        <button mat-menu-item (click)="socio(); (mobileQuery.matches ? sidenav.toggle() : '')" style="cursor: pointer">
+            <mat-icon>assignment</mat-icon>
+            <span>Socio</span>
+        </button>
+        <button mat-menu-item (click)="prestamo(); (mobileQuery.matches ? sidenav.toggle() : '')" style="cursor: pointer">
+          <mat-icon>assignment</mat-icon>
+          <span>Préstamo</span>
+        </button>
+        <ng-material-multilevel-menu [configuration]='config' [items]='loginService.appitems'
+          (selectedItem)="selectedItem($event); (mobileQuery.matches ? sidenav.toggle() : '')">
+        </ng-material-multilevel-menu>
+
+        <mat-divider></mat-divider>
+        <div *ngIf="mobileQuery.matches" layout="row" layout-align="center center">
+          © 2022 Pakay Todos los derechos reservados.
+        </div>
+
+      </mat-sidenav>
+      <mat-sidenav-content>
+        <router-outlet></router-outlet>
+      </mat-sidenav-content>
+
+    </mat-sidenav-container>
+    <mat-toolbar *ngIf="!mobileQuery.matches" color="primary" class="example-footer">© 2022 Pakay Todos los derechos
+      reservados.</mat-toolbar>
+
+  </div>
+</div>

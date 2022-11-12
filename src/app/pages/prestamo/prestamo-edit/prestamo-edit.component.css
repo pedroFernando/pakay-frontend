@@ -1,0 +1,76 @@
+.form {
+    min-width: 150px;
+    width: 98%;
+    margin: 20px 5px;
+  }
+  
+  .button-form {
+    margin: 10px 10px 0 0;
+  }
+  
+  .full-width-form {
+    width: 100%;
+  }
+
+  .example-first-footer-row {
+    font-weight: bold;
+  }
+
+  .example-headers-align .mat-expansion-panel-header-title, 
+  .example-headers-align .mat-expansion-panel-header-description {
+    flex-basis: 0;
+  }
+  
+  .example-headers-align .mat-expansion-panel-header-description {
+    justify-content: space-between;
+    align-items: center;
+  }
+
+
+  mat-header-cell{
+    display: flex;
+    justify-content: center !important;
+  }
+
+  /* Column Widths */
+.mat-column-cantidad,
+.mat-column-precio,
+.mat-column-descuento,
+.mat-column-subtotal,
+.mat-column-valor,
+.mat-column-valor2,
+.mat-column-valor3,
+.mat-column-valor4,
+.mat-column-valor5,
+.mat-column-valor6 {
+  max-width: 85px;
+  display: flex;
+  justify-content: flex-end;
+}
+.mat-column-precio{
+  max-width: 100px;
+}
+
+.mat-column-det1,
+.mat-column-det2 {
+  max-width: 120px;
+}
+
+.mat-column-acciones {
+  max-width: 75px;
+}
+
+.mat-column-iva{
+  max-width: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.mat-column-subtotalsi,
+.mat-column-subtotaliva,
+.mat-column-subtotal0,
+.mat-column-totaldescuento,
+.mat-column-totaliva,
+.mat-column-total{
+  border-bottom-style: none;
+}

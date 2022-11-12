@@ -1,0 +1,99 @@
+<mat-toolbar>Préstamo</mat-toolbar>
+
+<br/>
+<div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+
+  <div fxFlex="20%">
+    <mat-form-field class="full-width-form">
+      <mat-select [compareWith]="compareCajas" placeholder="Caja" required [formControl]="formCaja" (selectionChange)="changeCaja($event)">
+        <mat-option *ngFor="let ti of cajas" [value]="ti">
+          {{ ti.nombre + "-" + ti.monto }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div fxFlex="20%">
+    <mat-form-field class="full-width-form">
+      <input matInput [matDatepicker]="picker3" placeholder="Fecha" [(ngModel)]="fecha">
+      <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+      <mat-datepicker #picker3></mat-datepicker>
+    </mat-form-field>
+  </div>
+  <div fxFlex="20%">
+    <mat-form-field class="full-width-form">
+      <input matInput placeholder="Monto" required [(ngModel)]="monto" type="number">
+    </mat-form-field>
+  </div>
+</div>
+
+<div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+
+  <div fxFlex="15%">
+    <mat-form-field class="full-width-form">
+      <mat-select [compareWith]="compareClases" placeholder="Amortización" required [formControl]="formClase" (selectionChange)="changeClase($event)">
+        <mat-option *ngFor="let cl of clases" [value]="cl">
+          {{ cl }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div fxFlex="15%">
+    <mat-form-field class="full-width-form">
+      <mat-select [compareWith]="compareTipos" placeholder="Tipo" required [formControl]="formTipo" (selectionChange)="changeTipo($event)">
+        <mat-option *ngFor="let ti of tipos" [value]="ti">
+          {{ ti }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div fxFlex="15%">
+    <mat-form-field class="full-width-form">
+      <input matInput placeholder="Plazo" required [(ngModel)]="plazo" type="number">
+    </mat-form-field>
+  </div>
+  <div fxFlex="15%">
+    <mat-form-field class="full-width-form">
+      <input matInput placeholder="Interés" required [(ngModel)]="interes" type="number">
+    </mat-form-field>
+  </div>
+</div>
+
+<div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+
+  <div fxFlex="30%">
+    <mat-form-field class="full-width-form">
+      <input type="text" placeholder="Socio" matInput [matAutocomplete]="autoSocio" [formControl]="formSocio">
+      <mat-autocomplete #autoSocio="matAutocomplete" [displayWith]="displayFnSocio" (optionSelected)="seleccionarSocio($event)">
+        <mat-option *ngFor="let p of filteredSocio | async" [value]="p">
+          {{ p.cedula + " - " + p.nombres + " " + p.apellidos }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </div>
+  <div fxFlex="30%">
+    <mat-form-field class="full-width-form">
+      <input type="text" placeholder="Garante" matInput [matAutocomplete]="autoGarante" [formControl]="formGarante">
+      <mat-autocomplete #autoGarante="matAutocomplete" [displayWith]="displayFnGarante" (optionSelected)="seleccionarGarante($event)">
+        <mat-option *ngFor="let g of filteredGarante | async" [value]="g">
+          {{ g.cedula + " - " + g.nombres + " " + g.apellidos }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </div>
+</div>
+
+<div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+
+  <div fxFlex="60%">
+    <button mat-raised-button class="button-form" color="primary" type="button" (click)="crearPrestamo()">
+      <mat-icon>save</mat-icon>
+      <span>Guardar</span>
+    </button>
+
+    <button mat-raised-button class="button-form" color="accent" routerLink='/prestamo' type="button">
+      <mat-icon>close</mat-icon>
+      <span>Cancelar</span>
+    </button>
+  </div>
+</div>
+<br/>
