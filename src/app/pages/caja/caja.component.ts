@@ -29,9 +29,8 @@ export class CajaComponent implements OnInit {
     private router: Router, public dialog: MatDialog) { }
 
   ngOnInit() {
-    this.cajaService.listByEmpresa().subscribe(data => {
+    this.cajaService.getAll().subscribe(data => {
       this.lista = data;
-
       this.dataSource = new MatTableDataSource(this.lista);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
@@ -49,9 +48,9 @@ export class CajaComponent implements OnInit {
   eliminar(caja: Caja): void {
     if (confirm("¿Está seguro de eliminar la caja " + caja.nombre + "?")) {
       this.cajaService.eliminar(caja).subscribe(data => {
-
+        console.log(data);
         if (data.codigo === OK) {
-          this.cajaService.listByEmpresa().subscribe(data => {
+          this.cajaService.getAll().subscribe(data => {
             this.cajaService.cajaCambio.next(data);
             this.cajaService.mensaje.next("Se eliminó correctamente");
           });

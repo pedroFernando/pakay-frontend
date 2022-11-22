@@ -64,7 +64,7 @@ export class SocioEditComponent implements OnInit {
       //update
       this.socioService.modificar(this.socio).subscribe(data => {
         if (data.codigo === OK) {
-          this.socioService.listByEmpresa('S').subscribe(cajas => {
+          this.socioService.getAll().subscribe(cajas => {
             this.socioService.socioCambio.next(cajas);
             this.socioService.mensaje.next(data.mensaje);
           });
@@ -80,7 +80,7 @@ export class SocioEditComponent implements OnInit {
       this.socio.tipo = 'S';
       this.socioService.registrar(this.socio).subscribe(data => {
         if (data.codigo === OK) {
-          this.socioService.listByEmpresa('S').subscribe(cajas => {
+          this.socioService.getAll().subscribe(cajas => {
             this.socioService.socioCambio.next(cajas);
             this.socioService.mensaje.next(data.mensaje);
           });

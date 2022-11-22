@@ -69,7 +69,7 @@ export class PrestamoComponent implements OnInit {
   }
 
   cargarListas() {
-    this.socioService.listByEmpresa('S').subscribe(data => {
+    this.socioService.getAll().subscribe(data => {
       this.socios = data;
       this.filteredSocio = this.formConsulta.controls['socio'].valueChanges
         .pipe(

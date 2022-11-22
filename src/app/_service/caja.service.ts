@@ -19,20 +19,16 @@ export class CajaService {
   tipo: string = '';
   constructor(private http: HttpClient) { }
 
-  listByEmpresa() {
-    //let empresa = JSON.parse(sessionStorage.getItem(EMPRESA));
-    let empresa = 50;
-    return this.http.get<Caja[]>(`${this.url}/listar/${empresa}`);
+  getAll() {
+    return this.http.get<Caja[]>(`${this.url}`);
   }
 
   getById() {
-    return this.http.get<Caja>(`${this.url}/buscar/${this.id}`);
+    return this.http.get<Caja>(`${this.url}/${this.id}`);
   }
 
   registrar(caja: Caja) {
-    let ip = JSON.parse(sessionStorage.getItem(IP)).ip;
-    let usuario = JSON.parse(sessionStorage.getItem(USUARIO));
-    return this.http.post<Respuesta>(`${this.url}/registrar/${usuario.idUsuario}&${ip}&${COD_APP}`, caja);
+    return this.http.post<Respuesta>(`${this.url}`, caja);
   }
 
   modificar(caja: Caja) {
@@ -55,8 +51,6 @@ export class CajaService {
   }
 
   eliminar(caja: Caja) {
-    let ip = JSON.parse(sessionStorage.getItem(IP)).ip;
-    let usuario = JSON.parse(sessionStorage.getItem(USUARIO));
-    return this.http.delete<Respuesta>(`${this.url}/eliminar/${caja.id}&${usuario.idUsuario}&${ip}&${COD_APP}`);
+    return this.http.delete<Respuesta>(`${this.url}/${caja.id}`);
   }
 }

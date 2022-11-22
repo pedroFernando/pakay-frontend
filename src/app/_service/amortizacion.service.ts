@@ -19,7 +19,7 @@ export class AmortizacionService {
   constructor(private http: HttpClient) { }
 
   listBySolicitud(solicitud: number) {
-    return this.http.get<Amortizacion[]>(`${this.url}/listar/${solicitud}`);
+    return this.http.get<Amortizacion[]>(`${this.url}/solicitud/${solicitud}`);
   }
 
   simular(consulta: AmortizacionConsulta) {
@@ -37,14 +37,10 @@ export class AmortizacionService {
   }
 
   pagar(amortizacion: Amortizacion) {
-    let ip = JSON.parse(sessionStorage.getItem(IP)).ip;
-    let usuario = JSON.parse(sessionStorage.getItem(USUARIO));
-    return this.http.put<Respuesta>(`${this.url}/pagar/${usuario.idUsuario}&${ip}&${COD_APP}`, amortizacion);
+    return this.http.put<Respuesta>(`${this.url}/pagar`, amortizacion);
   }
 
   eliminar(id: number) {
-    let ip = JSON.parse(sessionStorage.getItem(IP)).ip;
-    let usuario = JSON.parse(sessionStorage.getItem(USUARIO));
-    return this.http.delete<Respuesta>(`${this.url}/eliminar/${id}&${usuario.idUsuario}&${ip}&${COD_APP}`);
+    return this.http.delete<Respuesta>(`${this.url}/${id}`);
   }
 }

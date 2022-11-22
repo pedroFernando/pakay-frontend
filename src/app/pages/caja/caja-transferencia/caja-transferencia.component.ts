@@ -35,7 +35,7 @@ export class CajaTransferenciaComponent implements OnInit {
         this.caja = data;
       });
     }
-    this.cajaService.listByEmpresa().subscribe(data => {
+    this.cajaService.getAll().subscribe(data => {
       this.cajas = data;
     });
   }
@@ -55,7 +55,7 @@ export class CajaTransferenciaComponent implements OnInit {
     cajaDTO.monto = this.monto;
     this.cajaService.transferir(cajaDTO).subscribe(data => {
       if (data.codigo === OK) {
-        this.cajaService.listByEmpresa().subscribe(caj => {
+        this.cajaService.getAll().subscribe(caj => {
           this.cajaService.cajaCambio.next(caj);
           this.cajaService.mensaje.next(data.mensaje);
         });

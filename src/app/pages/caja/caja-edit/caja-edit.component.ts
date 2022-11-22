@@ -55,7 +55,7 @@ export class CajaEditComponent implements OnInit {
       //update
       this.cajaService.modificar(this.caja).subscribe(data => {
         if (data.codigo === OK) {
-          this.cajaService.listByEmpresa().subscribe(cajas => {
+          this.cajaService.getAll().subscribe(cajas => {
             this.cajaService.cajaCambio.next(cajas);
             this.cajaService.mensaje.next(data.mensaje);
           });
@@ -70,7 +70,7 @@ export class CajaEditComponent implements OnInit {
       this.caja.idEmpresa = empresa.id;
       this.cajaService.registrar(this.caja).subscribe(data => {
         if (data.codigo === OK) {
-          this.cajaService.listByEmpresa().subscribe(cajas => {
+          this.cajaService.getAll().subscribe(cajas => {
             this.cajaService.cajaCambio.next(cajas);
             this.cajaService.mensaje.next(data.mensaje);
           });

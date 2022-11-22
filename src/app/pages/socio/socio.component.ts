@@ -29,7 +29,7 @@ export class SocioComponent implements OnInit {
     private router: Router, public dialog: MatDialog) { }
 
   ngOnInit() {
-    this.socioService.listByEmpresa('S').subscribe(data => {
+    this.socioService.getAll().subscribe(data => {
       this.lista = data;
       this.dataSource = new MatTableDataSource(this.lista);
       this.dataSource.paginator = this.paginator;
@@ -48,9 +48,13 @@ export class SocioComponent implements OnInit {
   eliminar(socio: Socio): void {
     if (confirm("¿Está seguro de eliminar el socio " + socio.cedula + "?")) {
       this.socioService.eliminar(socio).subscribe(data => {
+        console.log(data);
         if (data.codigo === OK) {
-          this.socioService.listByEmpresa('S').subscribe(data => {
-            this.socioService.socioCambio.next(data);
+          this.socioService.getAll().subscribe(data => {
+            this.lista = data;
+            this.dataSource = new MatTableDataSource(this.lista);
+            this.dataSource.paginator = this.paginator;
+            this.dataSource.sort = this.sort;
             this.socioService.mensaje.next("Se eliminó correctamente");
           });
         } else {

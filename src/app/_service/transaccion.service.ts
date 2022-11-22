@@ -20,9 +20,8 @@ export class TransaccionService {
   edit: boolean = false;
   constructor(private http: HttpClient) { }
 
-  listByEmpresa() {
-    let empresa = JSON.parse(sessionStorage.getItem(EMPRESA));
-    return this.http.get<Transaccion[]>(`${this.url}/listar/${empresa.id}`);
+  getAll() {
+    return this.http.get<Transaccion[]>(`${this.url}`);
   }
 
   reporteEmpresa() {
@@ -50,22 +49,14 @@ export class TransaccionService {
   }
 
   registrar(transaccion: Transaccion) {
-    let ip = JSON.parse(sessionStorage.getItem(IP)).ip;
-    let usuario = JSON.parse(sessionStorage.getItem(USUARIO));
-    let empresa = JSON.parse(sessionStorage.getItem(EMPRESA));
-    transaccion.idEmpresa = empresa.id;
-    return this.http.post<Respuesta>(`${this.url}/registrar/${usuario.idUsuario}&${ip}&${COD_APP}`, transaccion);
+    return this.http.post<Respuesta>(`${this.url}`, transaccion);
   }
 
   modificar(transaccion: Transaccion) {
-    let ip = JSON.parse(sessionStorage.getItem(IP)).ip;
-    let usuario = JSON.parse(sessionStorage.getItem(USUARIO));
-    return this.http.put<Respuesta>(`${this.url}/actualizar/${usuario.idUsuario}&${ip}&${COD_APP}`, transaccion);
+    return this.http.put<Respuesta>(`${this.url}/${transaccion.id}`, transaccion);
   }
 
   eliminar(id: number) {
-    let ip = JSON.parse(sessionStorage.getItem(IP)).ip;
-    let usuario = JSON.parse(sessionStorage.getItem(USUARIO));
-    return this.http.delete<Respuesta>(`${this.url}/eliminar/${id}&${usuario.idUsuario}&${ip}&${COD_APP}`);
+    return this.http.delete<Respuesta>(`${this.url}/${id}`);
   }
 }

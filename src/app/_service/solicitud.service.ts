@@ -19,27 +19,20 @@ export class SolicitudService {
   edit: boolean = false;
   constructor(private http: HttpClient) { }
 
-  listByEmpresa() {
-    let empresa = JSON.parse(sessionStorage.getItem(EMPRESA));
-    return this.http.get<Solicitud[]>(`${this.url}/listar/${empresa.id}`);
+  getAll() {
+    return this.http.get<Solicitud[]>(`${this.url}`);
   }
 
   filtrar(consulta: TransaccionConsulta) {
-    let empresa = JSON.parse(sessionStorage.getItem(EMPRESA));
-    consulta.idEmpresa = empresa.id;
     return this.http.post<SolicitudDTO>(`${this.url}/filtrar`, consulta);
   }
 
   getById() {
-    return this.http.get<Solicitud>(`${this.url}/buscar/${this.id}`);
+    return this.http.get<Solicitud>(`${this.url}/${this.id}`);
   }
 
   registrar(solicitud: Solicitud) {
-    let ip = JSON.parse(sessionStorage.getItem(IP)).ip;
-    let usuario = JSON.parse(sessionStorage.getItem(USUARIO));
-    let empresa = JSON.parse(sessionStorage.getItem(EMPRESA));
-    solicitud.idEmpresa = empresa.id;
-    return this.http.post<Respuesta>(`${this.url}/registrar/${usuario.idUsuario}&${ip}&${COD_APP}`, solicitud);
+    return this.http.post<Respuesta>(`${this.url}`, solicitud);
   }
 
   modificar(solicitud: Solicitud) {

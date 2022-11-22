@@ -55,7 +55,7 @@ export class AporteEditComponent implements OnInit {
   }
 
   cargarListas() {
-    this.socioService.listByEmpresa('S').subscribe(data => {
+    this.socioService.getAll().subscribe(data => {
       this.socios = data;
       this.filteredSocio = this.formSocio.valueChanges
         .pipe(
@@ -63,7 +63,7 @@ export class AporteEditComponent implements OnInit {
           map(val => this.filterSocio(val))
         );
     });
-    this.cajaService.listByEmpresa().subscribe(data => {
+    this.cajaService.getAll().subscribe(data => {
       this.cajas = data;
     });
     
@@ -116,7 +116,7 @@ export class AporteEditComponent implements OnInit {
     transaccion.descripcion = "Aporte " + this.socioSeleccionado.cedula + " " + transaccion.mes;
     this.transaccionService.registrar(transaccion).subscribe(data => {
       if (data.codigo === OK) {
-        this.transaccionService.listByEmpresa().subscribe(aportes => {
+        this.transaccionService.getAll().subscribe(aportes => {
           this.transaccionService.transaccionCambio.next(aportes);
           this.transaccionService.mensaje.next(data.mensaje);
         });

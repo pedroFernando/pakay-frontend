@@ -58,7 +58,7 @@ export class PrestamoEditComponent implements OnInit {
   }
 
   cargarListas() {
-    this.socioService.listByEmpresa('S').subscribe(data => {
+    this.socioService.getAll().subscribe(data => {
       this.socios = data;
       this.garantes = data;
       this.filteredSocio = this.formSocio.valueChanges
@@ -73,7 +73,7 @@ export class PrestamoEditComponent implements OnInit {
         );
     });
     
-    this.cajaService.listByEmpresa().subscribe(data => {
+    this.cajaService.getAll().subscribe(data => {
       this.cajas = data;
     });
     
@@ -176,7 +176,7 @@ export class PrestamoEditComponent implements OnInit {
     prestamo.saldoContra = 0;
     this.solicitudService.registrar(prestamo).subscribe(data => {
       if (data.codigo === OK) {
-        this.solicitudService.listByEmpresa().subscribe(prest => {
+        this.solicitudService.getAll().subscribe(prest => {
           this.solicitudService.solicitudCambio.next(prest);
           this.solicitudService.mensaje.next(data.mensaje);
         });

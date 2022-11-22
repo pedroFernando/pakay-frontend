@@ -54,7 +54,7 @@ export class CajaIngresoEgresoComponent implements OnInit {
     cajaDTO.motivo = this.motivo;
     this.cajaService.egresoIngreso(cajaDTO).subscribe(data => {
       if (data.codigo === OK) {
-        this.cajaService.listByEmpresa().subscribe(caj => {
+        this.cajaService.getAll().subscribe(caj => {
           this.cajaService.cajaCambio.next(caj);
           this.cajaService.mensaje.next(data.mensaje);
         });

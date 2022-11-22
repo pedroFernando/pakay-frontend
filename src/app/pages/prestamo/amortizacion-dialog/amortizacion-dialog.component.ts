@@ -45,7 +45,7 @@ export class AmortizacionDialogComponent implements OnInit {
     this.fecha.setMinutes(0);
     this.fecha.setSeconds(0);
     this.fecha.setMilliseconds(0);
-    this.cajaService.listByEmpresa().subscribe(data => {
+    this.cajaService.getAll().subscribe(data => {
       this.cajas = data;
     });
   }
@@ -54,13 +54,13 @@ export class AmortizacionDialogComponent implements OnInit {
     let sumaCapital: number = 0;
     let sumaInteres: number = 0;
     let sumaCuota: number = 0;
-    for (var i = 0; i < this.dto.lista.length; i++) {
-      if(this.dto.lista[i].estado == 'P'){
-        this.dto.totalSaldo = this.dto.lista[i].saldo;
+    for (const element of this.dto.lista) {
+      if(element.estado == 'P'){
+        this.dto.totalSaldo = element.saldo;
       }
-      sumaCapital += this.dto.lista[i].capital;
-      sumaInteres += this.dto.lista[i].interes;
-      sumaCuota += this.dto.lista[i].cuota;
+      sumaCapital += element.capital;
+      sumaInteres += element.interes;
+      sumaCuota += element.cuota;
     }
     this.dto.totalCapital = sumaCapital;
     this.dto.totalInteres = sumaInteres;
@@ -85,7 +85,7 @@ export class AmortizacionDialogComponent implements OnInit {
           this.snackBar.open(data.mensaje, null, { duration: 4000 });
           return;
         }
-        this.cajaService.listByEmpresa().subscribe(data => {
+        this.cajaService.getAll().subscribe(data => {
           this.cajas = data;
         });
         this.totales();
