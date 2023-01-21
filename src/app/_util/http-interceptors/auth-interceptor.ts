@@ -12,13 +12,11 @@ export class AuthInterceptor implements HttpInterceptor {
         // Get the auth token from the service.
         // Clone the request and replace the original headers with
         // cloned headers, updated with the authorization.
-        if (req.url.includes('/oauth/token') || req.url.includes('https://api.ipify.org/?format=json')
-            || req.url.includes('/registro/registrar/')) {
+        if (req.url.includes('/auth/authenticate') || req.url.includes('https://api.ipify.org/?format=json')) {
             return next.handle(req);
         }
-
         const authReq = req.clone({
-            headers: req.headers.set('Authorization', `bearer ${JSON.parse(sessionStorage.getItem(TOKEN_NAME)).access_token}`)
+            headers: req.headers.set('Authorization', `Bearer ${JSON.parse(sessionStorage.getItem(TOKEN_NAME))}`)
                 .set('Content-Type', 'application/json')
         });
         // send cloned request with header to the next handler.

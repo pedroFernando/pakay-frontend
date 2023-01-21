@@ -84,25 +84,13 @@ export class MainComponent implements OnDestroy, OnInit {
       { name: 'description', content: 'PAKAY App Web' },
       { name: 'robots', content: 'index, follow' },
     ]);
-    this.getMenu();
+
   }
 
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
   }
 
-  getMenu() {
-    sessionStorage.setItem(USUARIO, JSON.stringify(1));
-    sessionStorage.setItem(EMPRESA, JSON.stringify(50));
-    if (this.loginService.estaLogeado()) {
-      this.loginService.menu = JSON.parse(localStorage.getItem(MENU));
-      const usuario = JSON.parse(localStorage.getItem(USUARIO));
-      const empresa = JSON.parse(localStorage.getItem(EMPRESA));
-      this.loginService.nombreUsuario = usuario.nombre + ' ' + usuario.apellido;
-      this.loginService.nombreEmpresa = empresa.nombreComercial;
-      this.loginService.iniciarMenu();
-    }
-  }
 
   selectedItem(event: Event) {
     this.router.navigate([event['link']]);

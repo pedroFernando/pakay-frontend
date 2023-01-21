@@ -1,5 +1,5 @@
 export const HOST = 'http://localhost:8080/pakay/api';
-export const HOST_AUTH = 'http://localhost:8080/pakay/api';
+export const HOST_AUTH = 'http://localhost:8080/pakay/api/auth/authenticate';
 export const TOKEN_NAME = 'ist_ahorro_access_token';
 export const TOKEN_AUTH_USERNAME = 'isoftech1989keaid';
 export const TOKEN_AUTH_PASSWORD = 'isoftech1989secret';

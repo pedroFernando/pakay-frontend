@@ -1,5 +1,4 @@
 import { TOKEN_NAME, HOST_AUTH } from './_util/var.constant';
-import { httpInterceptorProviders } from './_util/http-interceptors/index';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -11,10 +10,10 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { MultilevelMenuService } from 'ng-material-multilevel-menu';
 import { NgIdleKeepaliveModule } from '@ng-idle/keepalive';
-import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { httpInterceptorProviders } from './_util/http-interceptors';
 
 // eslint-disable-next-line arrow-body-style
 const tokenGetter = () => {
@@ -35,7 +34,7 @@ const tokenGetter = () => {
       config: {
         tokenGetter,
         disallowedRoutes: [
-          `${HOST_AUTH}/oauth/token`,
+          `${HOST_AUTH}`,
           `${HOST_AUTH}/registro/nuevo`,
           'https://api.ipify.org/?format=json',
         ],
@@ -44,6 +43,7 @@ const tokenGetter = () => {
     NgIdleKeepaliveModule.forRoot(),
   ],
   providers: [
+    httpInterceptorProviders,
     MultilevelMenuService,
     { provide: LocationStrategy, useClass: HashLocationStrategy },
     { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },

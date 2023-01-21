@@ -1,6 +1,6 @@
 import { httpInterceptorProviders } from '../../_util/http-interceptors/index';
 import { HttpClientModule } from '@angular/common/http';
-import { NgModule, ErrorHandler } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { MainRoutingModule } from './main-routing.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -70,6 +70,7 @@ import { TourMatMenuModule } from 'ngx-ui-tour-md-menu';
     TourMatMenuModule.forRoot(),
   ],
   providers: [
+    httpInterceptorProviders,
     MultilevelMenuService,
     { provide: LocationStrategy, useClass: HashLocationStrategy },
     { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },

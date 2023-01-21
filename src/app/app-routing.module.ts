@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { GuardService } from './_service/guard.service';
 
 const routes: Routes = [
   {
     path: '',
     loadChildren: () => import('./pages/main/main.module').then(m => m.MainModule),
+    canActivate: [GuardService],
   },
   {
     path: 'login',
@@ -14,6 +16,7 @@ const routes: Routes = [
     path: 'registro',
     loadChildren: () => import('./registro/registro.module').then( r => r.RegistroModule),
   },
+  { path: '', redirectTo: 'login', pathMatch: 'full' }
 ];
 
 @NgModule({

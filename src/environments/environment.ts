@@ -7,5 +7,5 @@ export const environment = {
   production: false,
   host: 'http://localhost:8080',
   username: 'isoftech1989keaid',
-  password: 'isoftech1989secret',
+  password: 'aope1232143254567542321313123qwe2112432543rtgdfgdfggsgdsg543546547567567657fgfdgdf',
 };
