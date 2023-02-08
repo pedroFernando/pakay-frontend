@@ -4,7 +4,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { EMPRESA } from '../../../_util/var.constant';
 import { EmpresaService } from '../../../_service/aut/empresa.service';
 import { Empresa } from '../../../_model/aut/empresa';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
 
 @Component({
   selector: 'app-empresa',

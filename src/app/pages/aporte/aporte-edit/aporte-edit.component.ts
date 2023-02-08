@@ -11,8 +11,8 @@ import { CajaService } from '../../../_service/caja.service';
 import { COD_APORTE, OK } from '../../../_util/var.constant';
 import { TransaccionService } from '../../../_service/transaccion.service';
 import { Documento } from '../../../_model/documento';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatSelectChange } from '@angular/material/select';
+import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
+import { MatLegacySelectChange as MatSelectChange } from '@angular/material/legacy-select';
 
 @Component({
   selector: 'app-aporte-edit',

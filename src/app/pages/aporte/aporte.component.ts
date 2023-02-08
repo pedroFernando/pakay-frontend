@@ -12,11 +12,11 @@ import { Socio } from './../../_model/socio';
 import { TransaccionConsulta } from './../../_model/dto/transaccion-consulta';
 import { TransaccionDTO } from './../../_model/dto/transaccion-dto';
 import { TransaccionStore } from './../../_model/dto/transaccion-store';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatLegacyPaginator as MatPaginator } from '@angular/material/legacy-paginator';
+import { MatLegacyTableDataSource as MatTableDataSource } from '@angular/material/legacy-table';
 import { MatSort } from '@angular/material/sort';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatDialog } from '@angular/material/dialog';
+import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
+import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 
 @Component({
   selector: 'app-aporte',
