@@ -26,7 +26,7 @@ jobs:
     - name: Build Angular App
       run: |
         # Cambia la configuración si es necesario (por ejemplo, si usas una configuración específica de entorno)
-        ng build --configuration production
+        npm run build -- --prod
 
     - name: Deploy to Azure App Service
       uses: azure/webapps-deploy@v2
