@@ -1,4 +1,4 @@
-<mat-toolbar *ngIf="!showOutlet">Aportes</mat-toolbar>
+<mat-toolbar *ngIf="!showOutlet">Facturas</mat-toolbar>
 
 <router-outlet (activate)="showOutlet = true" (deactivate)="showOutlet = false"></router-outlet>
 <div *ngIf="!showOutlet">
@@ -7,7 +7,7 @@
     <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
       <div fxFlex="60%">
         <mat-form-field class="full-width-form">
-          <input type="text" placeholder="Socio" matInput [matAutocomplete]="autoSocio" formControlName="socio">
+          <input type="text" placeholder="Cliente" matInput [matAutocomplete]="autoSocio" formControlName="socio">
           <mat-autocomplete #autoSocio="matAutocomplete" [displayWith]="displayFnSocio" (optionSelected)="seleccionarSocio($event)">
             <mat-option *ngFor="let p of filteredSocio | async" [value]="p">
               {{ p.cedula + " - " + p.nombres + " " + p.apellidos }}
@@ -56,7 +56,7 @@
     </ng-container>
 
     <ng-container matColumnDef="socio">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Socio </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Cliente </mat-header-cell>
       <mat-cell *matCellDef="let row">
         <span class="mobile-label">Socio:</span>
         {{row.nombres}}

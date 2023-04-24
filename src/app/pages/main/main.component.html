@@ -43,24 +43,36 @@
         </mat-card>
         <button mat-menu-item (click)="amortizacion(); (mobileQuery.matches ? sidenav.toggle() : '')" style="cursor: pointer">
           <mat-icon>insert_drive_file</mat-icon>
-          <span>Amortización</span>
+          <span>Usuarios</span>
         </button>
         <mat-divider></mat-divider>
         <button mat-menu-item (click)="caja(); (mobileQuery.matches ? sidenav.toggle() : '')" style="cursor: pointer">
             <mat-icon>assignment</mat-icon>
             <span>Caja</span>
         </button>
-        <button mat-menu-item (click)="aporte(); (mobileQuery.matches ? sidenav.toggle() : '')" style="cursor: pointer">
-            <mat-icon>assignment</mat-icon>
-            <span>Aportes</span>
+        <button mat-menu-item (click)="socio(); (mobileQuery.matches ? sidenav.toggle() : '')" style="cursor: pointer">
+          <mat-icon>assignment</mat-icon>
+          <span>Proveedores</span>
         </button>
         <button mat-menu-item (click)="socio(); (mobileQuery.matches ? sidenav.toggle() : '')" style="cursor: pointer">
+          <mat-icon>assignment</mat-icon>
+          <span>Clientes</span>
+        </button>
+        <button mat-menu-item (click)="aporte(); (mobileQuery.matches ? sidenav.toggle() : '')" style="cursor: pointer">
             <mat-icon>assignment</mat-icon>
-            <span>Socio</span>
+            <span>Facturas</span>
         </button>
         <button mat-menu-item (click)="prestamo(); (mobileQuery.matches ? sidenav.toggle() : '')" style="cursor: pointer">
           <mat-icon>assignment</mat-icon>
-          <span>Préstamo</span>
+          <span>Retenciones</span>
+        </button>
+        <button mat-menu-item (click)="prestamo(); (mobileQuery.matches ? sidenav.toggle() : '')" style="cursor: pointer">
+          <mat-icon>assignment</mat-icon>
+          <span>Notas de crédito</span>
+        </button>
+        <button mat-menu-item (click)="prestamo(); (mobileQuery.matches ? sidenav.toggle() : '')" style="cursor: pointer">
+          <mat-icon>assignment</mat-icon>
+          <span>Guias de Remisión</span>
         </button>
         <ng-material-multilevel-menu [configuration]='config' [items]='loginService.appitems'
           (selectedItem)="selectedItem($event); (mobileQuery.matches ? sidenav.toggle() : '')">

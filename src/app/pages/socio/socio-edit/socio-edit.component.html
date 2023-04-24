@@ -1,4 +1,4 @@
-<mat-card appearance="outlined">Datos de Socio</mat-card>
+<mat-card appearance="outlined">Datos de Cliente</mat-card>
 
 <br/>
 
@@ -14,12 +14,14 @@
 
     <div fxFlex="30%">
       <mat-form-field class="full-width-form">
+        <mat-label>Nombres</mat-label>
         <input matInput placeholder="Nombres" required formControlName="nombres">
       </mat-form-field>
     </div>
 
     <div fxFlex="30%">
       <mat-form-field class="full-width-form">
+        <mat-label>Apellidos</mat-label>
         <input matInput placeholder="Apellidos" required formControlName="apellidos">
       </mat-form-field>
     </div>
@@ -30,12 +32,14 @@
 
     <div fxFlex="30%">
       <mat-form-field class="full-width-form">
-        <input matInput placeholder="Cédula" required formControlName="cedula">
+        <mat-label>RUC o Cédula</mat-label>
+        <input matInput placeholder="RUC" required formControlName="cedula">
       </mat-form-field>
     </div>
 
     <div fxFlex="30%">
       <mat-form-field class="full-width-form">
+        <mat-label>Teléfono</mat-label>
         <input matInput placeholder="Teléfono" required formControlName="telefono">
       </mat-form-field>
     </div>
@@ -46,6 +50,7 @@
 
       <div fxFlex="60%">
           <mat-form-field class="full-width-form">
+            <mat-label>Dirección</mat-label>
             <input matInput placeholder="Dirección" required formControlName="direccion">
           </mat-form-field>
         </div>

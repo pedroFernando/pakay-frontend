@@ -1,6 +1,6 @@
 import { CatalogoItemService } from '../../../_service/catalogo-item.service';
 import { CatalogoItem } from '../../../_model/catalogo-item';
-import { OK, EMPRESA } from '../../../_util/var.constant';
+import { OK } from '../../../_util/var.constant';
 import { SocioService } from '../../../_service/socio.service';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
@@ -75,8 +75,6 @@ export class SocioEditComponent implements OnInit {
       });
     } else {
       //insert
-      let empresa = JSON.parse(sessionStorage.getItem(EMPRESA));
-      this.socio.idEmpresa = empresa.id;
       this.socio.tipo = 'S';
       this.socioService.registrar(this.socio).subscribe(data => {
         if (data.codigo === OK) {
