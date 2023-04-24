@@ -1,4 +1,4 @@
-export const HOST = 'https://kea-backend.azurewebsites.net:8080/pakay/api';
+export const HOST = 'https://kea-backend.azurewebsites.net/pakay/api';
 export const HOST_AUTH = 'https://kea-backend.azurewebsites.net/pakay/api/auth/authenticate';
 export const TOKEN_NAME = 'ist_ahorro_access_token';
 export const TOKEN_AUTH_USERNAME = 'isoftech1989keaid';
