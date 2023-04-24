@@ -10,8 +10,8 @@ import { CajaService } from '../../../_service/caja.service';
 import { OK } from '../../../_util/var.constant';
 import { Solicitud } from '../../../_model/solicitud';
 import { SolicitudService } from '../../../_service/solicitud.service';
-import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
-import { MatLegacySelectChange as MatSelectChange } from '@angular/material/legacy-select';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSelectChange } from '@angular/material/select';
 
 @Component({
   selector: 'app-prestamo-edit',

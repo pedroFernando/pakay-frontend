@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Caja } from '../../../_model/caja';
-import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-caja-edit',
@@ -67,7 +67,6 @@ export class CajaEditComponent implements OnInit {
     } else {
       //insert
       let empresa = JSON.parse(sessionStorage.getItem(EMPRESA));
-      this.caja.idEmpresa = empresa.id;
       this.cajaService.registrar(this.caja).subscribe(data => {
         if (data.codigo === OK) {
           this.cajaService.getAll().subscribe(cajas => {

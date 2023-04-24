@@ -7,7 +7,7 @@ import { TOKEN_NAME, USUARIO } from '../_util/var.constant';
 import { LoginService } from '../_service/login.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',

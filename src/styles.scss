@@ -6,9 +6,9 @@
 //  If you specify typography styles for the components you use elsewhere, you should delete this line.
 //  If you don't need the default component typographies but still want the hierarchy styles,
 //  you can delete this line and instead use:
-//    `@include mat.legacy-typography-hierarchy(mat.define-legacy-typography-config());`
-@include mat.all-legacy-component-typographies();
-@include mat.legacy-core();
+//    `@include mat.legacy-typography-hierarchy(mat.define-typography-config());`
+@include mat.all-component-typographies();
+@include mat.core();
 
 $contab-primary-palette: (
     50: #ffffff,
@@ -29,7 +29,7 @@ $my-app-warn:    mat.define-palette(mat.$red-palette);
 
 $my-app-theme: mat.define-light-theme($my-app-primary, $my-app-accent, $my-app-warn);
 
-@include mat.all-legacy-component-themes($my-app-theme);
+@include mat.all-component-themes($my-app-theme);
 
 $contab-app-primary:#1f3042;
 

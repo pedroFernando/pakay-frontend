@@ -5,7 +5,7 @@ import { RegistroService } from './../../../_service/aut/registro.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { UsuarioRegistro } from './../../../_model/aut/usuario-registro';
 import { Component, OnInit } from '@angular/core';
-import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-usuario-perfil',

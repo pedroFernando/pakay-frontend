@@ -5,7 +5,7 @@ import { FormControl } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Caja } from '../../../_model/caja';
 import { CajaDTO } from '../../../_model/dto/caja-dto';
-import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-caja-ingreso-egreso',

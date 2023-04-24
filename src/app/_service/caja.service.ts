@@ -34,7 +34,6 @@ export class CajaService {
   modificar(caja: Caja) {
     let ip = JSON.parse(sessionStorage.getItem(IP)).ip;
     let usuario = JSON.parse(sessionStorage.getItem(USUARIO));
-    caja.idEmpresa = 50;
     return this.http.put<Respuesta>(`${this.url}/actualizar/${usuario.idUsuario}&${ip}&${COD_APP}`, caja);
   }
 

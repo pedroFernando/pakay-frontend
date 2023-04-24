@@ -1,4 +1,4 @@
-import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { MatIconRegistry } from '@angular/material/icon';
 import { TokenExpiradoComponent } from '../../login/token-expirado/token-expirado.component';
 import { Router } from '@angular/router';

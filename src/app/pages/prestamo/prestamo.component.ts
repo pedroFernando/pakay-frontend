@@ -16,11 +16,11 @@ import { SolicitudStore } from './../../_model/dto/solicitud-store';
 import { AmortizacionService } from '../../_service/amortizacion.service';
 import { AmortizacionDialogComponent } from './amortizacion-dialog/amortizacion-dialog.component';
 import { AmortizacionDTO } from './../../_model/dto/amortizacion-dto';
-import { MatLegacyPaginator as MatPaginator } from '@angular/material/legacy-paginator';
+import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { MatLegacyTableDataSource as MatTableDataSource } from '@angular/material/legacy-table';
-import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
-import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-prestamo',

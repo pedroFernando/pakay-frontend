@@ -6,12 +6,12 @@ import { AmortizacionService } from '../../_service/amortizacion.service';
 import { AmortizacionConsulta } from './../../_model/dto/amortizacion-consulta';
 import * as XLSX from 'xlsx';
 import { AmortizacionReporte } from './../../_model/rep/amortizacion-reporte';
-import { MatLegacyTableDataSource as MatTableDataSource } from '@angular/material/legacy-table';
-import { MatLegacyPaginator as MatPaginator } from '@angular/material/legacy-paginator';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
-import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
-import { MatLegacySelectChange as MatSelectChange } from '@angular/material/legacy-select';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSelectChange } from '@angular/material/select';
 
 @Component({
   selector: 'app-amortizacion',
