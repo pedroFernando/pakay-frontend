@@ -67,7 +67,6 @@ export class CajaEditComponent implements OnInit {
     } else {
       //insert
       let empresa = JSON.parse(sessionStorage.getItem(EMPRESA));
-      this.caja.idEmpresa = empresa.id;
       this.cajaService.registrar(this.caja).subscribe(data => {
         if (data.codigo === OK) {
           this.cajaService.getAll().subscribe(cajas => {

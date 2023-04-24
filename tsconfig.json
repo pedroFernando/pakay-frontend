@@ -6,7 +6,7 @@
     "declaration": false,
     "moduleResolution": "node",
     "experimentalDecorators": true,
-    "target": "es2017",
+    "target": "ES2022",
     "typeRoots": [
       "node_modules/@types"
     ],
@@ -16,6 +16,7 @@
     ],
     "module": "esnext",
     "baseUrl": "./",
+    "useDefineForClassFields": false
   },
   "allowSyntheticDefaultImports": true
 }
